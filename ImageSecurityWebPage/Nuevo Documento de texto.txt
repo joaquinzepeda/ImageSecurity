@@ -1,0 +1,77 @@
+// Database Paths
+var dataFloatPath = 'test/float';
+var dataIntPath = 'test/int';
+
+// Get a database reference 
+const databaseFloat = database.ref(dataFloatPath);
+const databaseInt = database.ref(dataIntPath);
+
+// Variables to save database current values
+var floatReading;
+var intReading;
+
+// Attach an asynchronous callback to read the data
+databaseFloat.on('value', (snapshot) => {
+  floatReading = snapshot.val();
+  console.log(floatReading);
+  document.getElementById("reading-float").innerHTML = floatReading;
+}, (errorObject) => {
+  console.log('The read failed: ' + errorObject.name);
+});
+
+databaseInt.on('value', (snapshot) => {
+  intReading = snapshot.val();
+  console.log(intReading);
+  document.getElementById("reading-int").innerHTML = intReading;
+}, (errorObject) => {
+  console.log('The read failed: ' + errorObject.name);
+});
+
+
+    <!-- update the version number as needed -->
+    <script defer src="/__/firebase/9.20.0/firebase-app-compat.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <script defer src="/__/firebase/9.20.0/firebase-auth-compat.js"></script>
+    <script defer src="/__/firebase/9.20.0/firebase-database-compat.js"></script>
+    <script defer src="/__/firebase/9.20.0/firebase-firestore-compat.js"></script>
+    <script defer src="/__/firebase/9.20.0/firebase-functions-compat.js"></script>
+    <script defer src="/__/firebase/9.20.0/firebase-messaging-compat.js"></script>
+    <script defer src="/__/firebase/9.20.0/firebase-storage-compat.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//storage path
+var storageRef = storage.ref();
+console.log('StorageRef',storageRef);
+
+var i = 0;
+storageRef.child('images/').listAll().then(function(result){
+    result.items.forEach(function(imageRef){
+        console.log("Image reference"+ imageRef.toString());
+        i++;
+        displayImage(imageRef);
+    })
+})
+
+
+function displayImage(images) {
+    var img = document.createElement("img");
+    images.getDownloadURL().then(function(url){
+        console.log(url);
+        img.src = url;
+      });
+    img.width = 320;
+    img.height = 250;
+    document.body.appendChild(img);
+   }
