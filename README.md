@@ -1,4 +1,4 @@
-![banner](imgs/cropped-logo-fcfm-die-1.png)
+![banner](cropped-logo-fcfm-die-1.png)
 
 # ImageSecurity
 Dispositivo IoT diseñadp para el curso Taller de diseño EL5004,  Universidad de Chile. Integrantes: Joaquin Zepeda, Benjamin Irarrazabal y Samuel Clavel.
